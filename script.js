@@ -48,8 +48,8 @@ function saveStudentData() {
     //04.create content tipe header //
     //05.send object
 
-    const http = new XMLHttpRequest() //01
-    http.onreadystatechange = ()=>{ // coll back funshion => ready state ek chak krnn use wenne req ekt dunn resp ek mokkd kiyl blagnn //parameter ekk widiyt data tranceper krnwa (promise method  ekk tiye)
+  //  const http = new XMLHttpRequest() //01
+  //  http.onreadystatechange = ()=>{ // coll back funshion => ready state ek chak krnn use wenne req ekt dunn resp ek mokkd kiyl blagnn //parameter ekk widiyt data tranceper krnwa (promise method  ekk tiye)
         //AJAX - ready state ek athulen blnn puluwan eke swabawaya step 5k wenkm ynwa (0-4) //AJAX KIYNNE=> Acetonice and java xml
         // page ek refresh nokara client ta eyage user experience ek awlk nowi data transper krgnn AJAX use krnne
         // Holds the status of the XMLHttpRequest.
@@ -66,25 +66,25 @@ function saveStudentData() {
         // 404: "Page not found"
         // For a complete list go to the Http Messages Reference
 
-        if (http.readyState == 4){
-            if (http.status == 200){
+       // if (http.readyState == 4){
+        //    if (http.status == 200){
                // property godak tiyenwa api dunn req ekt mokd une kiyl blnn resp ek kohomd blnna
-              var responseTextJSON = JSON.stringify( http.responseText) //responce ek gnnwa stringifymethod ek use krgnnwa java EE wal krpu ek wage jason krn ek //stringifymethod => awa resp ek jason ekkt convert krla gnn ek
-                console.log(responseTextJSON)
-            }else {
-                console.error("Failed to statement") // resp ekt mokkhri unot ek balagnn
-                console.error("Status" + http.status)
-                console.error("Ready State" + http.readyState)
-            }
+          //    var responseTextJSON = JSON.stringify( http.responseText) //responce ek gnnwa stringifymethod ek use krgnnwa java EE wal krpu ek wage jason krn ek //stringifymethod => awa resp ek jason ekkt convert krla gnn ek
+                //console.log(responseTextJSON)
+          //  }else {
+               // console.error("Failed to statement") // resp ekt mokkhri unot ek balagnn
+               // console.error("Status" + http.status)
+               // console.error("Ready State" + http.readyState)
+           // }
 
-        }else {
-            console.error("Ready State" + http.readyState)
+      //  }else {
+          //  console.error("Ready State" + http.readyState)
 
-        }
-    } //02
-    http.open("POST","http://localhost:8080/StudentManagement/student",true) //03 true unot withryi refresh nowi ynne assintonice (url ekyi assintonix d sintonix d kiyl)
-    http.setRequestHeader("Content-Type","application/json") //04 Header- adishanal information ekk ywanne header walin === payload eke ewnne jason data ekk kiyl== denne
-    http.send(studentJSON) // empty body to coll GET method //05 //jason object ek yawanawa
+     ////   }
+   // } //02
+    //http.open("POST","http://localhost:8080/StudentManagement/student",true) //03 true unot withryi refresh nowi ynne assintonice (url ekyi assintonix d sintonix d kiyl)
+   // http.setRequestHeader("Content-Type","application/json") //04 Header- adishanal information ekk ywanne header walin === payload eke ewnne jason data ekk kiyl== denne
+   // http.send(studentJSON) // empty body to coll GET method //05 //jason object ek yawanawa
 
 
     // CORS policy - domain dekk athara data shar kragnn giyam enne domain dekk athara data shar krnn be
@@ -100,4 +100,19 @@ function saveStudentData() {
     // It is an OPTIONS request, using two or three HTTP request headers: Access-Control-Request-Method, Origin, and optionally Access-Control-Request-Headers.
     // A preflight request is automatically issued by a browser and in normal cases, front-end developers don't need to craft such requests themselves. It appears when request is qualified as "to be preflighted" and omitted for simple requests.
     // For example, a client might be asking a server if it would allow a DELETE request, before sending a DELETE request, by using a preflight request:
+
+    //Introduce AJAX -native -JQuery
+    $.ajax({
+        url:"http://localhost:8080/StudentManagement/student",type:"POST",data:studentJSON,headers:{"Connect-Type":"applicatoin/json"},success:(res)=>{
+            console.log(JSON.stringify(res))
+        },
+        error:(res)=>{
+        console.error(res)
+        }
+        
+
+    });
+
 }
+
+
